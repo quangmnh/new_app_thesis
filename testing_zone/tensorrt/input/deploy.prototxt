@@ -1741,7 +1741,8 @@ layer {
     shape {
       dim: 0
       dim: -1
-      dim: 3
+      dim: 2
+      dim: 1
     }
   }
 }
