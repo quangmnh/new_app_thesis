@@ -1031,7 +1031,7 @@ layer {
 }
 layer {
   name: "conv4_3_norm_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv4_3_norm_mbox_loc_perm"
   top: "conv4_3_norm_mbox_loc_flat"
   reshape_param {
@@ -1083,7 +1083,7 @@ layer {
 }
 layer {
   name: "conv4_3_norm_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv4_3_norm_mbox_conf_perm"
   top: "conv4_3_norm_mbox_conf_flat"
   reshape_param {
@@ -1155,7 +1155,7 @@ layer {
 }
 layer {
   name: "fc7_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "fc7_mbox_loc_perm"
   top: "fc7_mbox_loc_flat"
   reshape_param {
@@ -1207,7 +1207,7 @@ layer {
 }
 layer {
   name: "fc7_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "fc7_mbox_conf_perm"
   top: "fc7_mbox_conf_flat"
   reshape_param {
@@ -1280,7 +1280,7 @@ layer {
 }
 layer {
   name: "conv6_2_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv6_2_mbox_loc_perm"
   top: "conv6_2_mbox_loc_flat"
   reshape_param {
@@ -1332,7 +1332,7 @@ layer {
 }
 layer {
   name: "conv6_2_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv6_2_mbox_conf_perm"
   top: "conv6_2_mbox_conf_flat"
   reshape_param {
@@ -1405,7 +1405,7 @@ layer {
 }
 layer {
   name: "conv7_2_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv7_2_mbox_loc_perm"
   top: "conv7_2_mbox_loc_flat"
   reshape_param {
@@ -1457,7 +1457,7 @@ layer {
 }
 layer {
   name: "conv7_2_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv7_2_mbox_conf_perm"
   top: "conv7_2_mbox_conf_flat"
   reshape_param {
@@ -1530,7 +1530,7 @@ layer {
 }
 layer {
   name: "conv8_2_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv8_2_mbox_loc_perm"
   top: "conv8_2_mbox_loc_flat"
   reshape_param {
@@ -1582,7 +1582,7 @@ layer {
 }
 layer {
   name: "conv8_2_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv8_2_mbox_conf_perm"
   top: "conv8_2_mbox_conf_flat"
   reshape_param {
@@ -1654,7 +1654,7 @@ layer {
 }
 layer {
   name: "conv9_2_mbox_loc_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv9_2_mbox_loc_perm"
   top: "conv9_2_mbox_loc_flat"
   reshape_param {
@@ -1706,7 +1706,7 @@ layer {
 }
 layer {
   name: "conv9_2_mbox_conf_flat"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "conv9_2_mbox_conf_perm"
   top: "conv9_2_mbox_conf_flat"
   reshape_param {
@@ -1803,7 +1803,7 @@ layer {
 }
 layer {
   name: "mbox_conf_flatten"
-  type: "Flatten"
+  type: "Reshape "
   bottom: "mbox_conf_softmax"
   top: "mbox_conf_flatten"
   reshape_param {
