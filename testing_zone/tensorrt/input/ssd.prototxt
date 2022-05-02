@@ -1836,6 +1836,7 @@ layer {
   bottom: "mbox_conf_flatten"
   bottom: "mbox_priorbox"
   top: "detection_out"
+  top: "keep_count"
   include {
     phase: TEST
   }
