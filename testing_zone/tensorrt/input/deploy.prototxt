@@ -1034,8 +1034,13 @@ layer {
   type: "Flatten"
   bottom: "conv4_3_norm_mbox_loc_perm"
   top: "conv4_3_norm_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1082,8 +1087,13 @@ layer {
   type: "Flatten"
   bottom: "conv4_3_norm_mbox_conf_perm"
   top: "conv4_3_norm_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1150,8 +1160,13 @@ layer {
   type: "Flatten"
   bottom: "fc7_mbox_loc_perm"
   top: "fc7_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1198,8 +1213,13 @@ layer {
   type: "Flatten"
   bottom: "fc7_mbox_conf_perm"
   top: "fc7_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1267,8 +1287,13 @@ layer {
   type: "Flatten"
   bottom: "conv6_2_mbox_loc_perm"
   top: "conv6_2_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1315,8 +1340,13 @@ layer {
   type: "Flatten"
   bottom: "conv6_2_mbox_conf_perm"
   top: "conv6_2_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1384,8 +1414,13 @@ layer {
   type: "Flatten"
   bottom: "conv7_2_mbox_loc_perm"
   top: "conv7_2_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1432,8 +1467,13 @@ layer {
   type: "Flatten"
   bottom: "conv7_2_mbox_conf_perm"
   top: "conv7_2_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1501,8 +1541,13 @@ layer {
   type: "Flatten"
   bottom: "conv8_2_mbox_loc_perm"
   top: "conv8_2_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1549,8 +1594,13 @@ layer {
   type: "Flatten"
   bottom: "conv8_2_mbox_conf_perm"
   top: "conv8_2_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1617,8 +1667,13 @@ layer {
   type: "Flatten"
   bottom: "conv9_2_mbox_loc_perm"
   top: "conv9_2_mbox_loc_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1665,8 +1720,13 @@ layer {
   type: "Flatten"
   bottom: "conv9_2_mbox_conf_perm"
   top: "conv9_2_mbox_conf_flat"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 layer {
@@ -1759,8 +1819,13 @@ layer {
   type: "Flatten"
   bottom: "mbox_conf_softmax"
   top: "mbox_conf_flatten"
-  flatten_param {
-    axis: 1
+  reshape_param {
+    shape {
+      dim: 0
+      dim: -1
+      dim: 1
+      dim: 1
+    }
   }
 }
 

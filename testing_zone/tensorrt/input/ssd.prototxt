@@ -1041,6 +1041,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv4_3_norm_mbox_conf"
@@ -1093,6 +1094,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv4_3_norm_mbox_priorbox"
@@ -1165,6 +1167,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "fc7_mbox_conf"
@@ -1217,6 +1220,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "fc7_mbox_priorbox"
@@ -1290,6 +1294,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv6_2_mbox_conf"
@@ -1342,6 +1347,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv6_2_mbox_priorbox"
@@ -1415,6 +1421,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv7_2_mbox_conf"
@@ -1467,6 +1474,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv7_2_mbox_priorbox"
@@ -1540,6 +1548,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv8_2_mbox_conf"
@@ -1592,6 +1601,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv8_2_mbox_priorbox"
@@ -1664,6 +1674,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 layer {
   name: "conv9_2_mbox_conf"
@@ -1716,6 +1727,8 @@ layer {
       dim: 1
       dim: 1
     }
+  }
+}
 layer {
   name: "conv9_2_mbox_priorbox"
   type: "PriorBox"
@@ -1813,6 +1826,7 @@ layer {
       dim: 1
       dim: 1
     }
+  }
 }
 
 layer {
