@@ -6,7 +6,7 @@ emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_
 caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 print("??????????????")
 
-data_path = ".\input\data1"
+data_path = "./input/data1"
 filepaths = []
 images = []
 for root, directories, files in os.walk(data_path):
