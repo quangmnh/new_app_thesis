@@ -26,7 +26,7 @@ for image in images:
     roi = get_roi(box, frame)
     # print("??????????????c")
     print(box)
-    print(emo_model.predict(roi))
     print(trt_model.predict(roi)[0])
+    print(emo_model.predict(roi))
     
 
