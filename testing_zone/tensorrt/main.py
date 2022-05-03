@@ -11,6 +11,8 @@ while True:
     if box is None:
         continue
     else:
+        (height, width) = frame.shape[:2]
+        box = box * np.array([width, height, width, height])
         (x, y, w, h) = box.astype('int')
         # cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
         print([x, y, w, h])

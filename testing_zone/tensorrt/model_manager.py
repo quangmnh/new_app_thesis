@@ -124,7 +124,7 @@ class ONNXClassifierWrapper2():
             confidence = self.output[0, 0, i, 2]
 
             if confidence > 0.5:
-                return self.output[0, 0, i, 3:7]
+                return self.output[0, 0, i, 3:7] 
         return None
 
 class CameraManagement():
