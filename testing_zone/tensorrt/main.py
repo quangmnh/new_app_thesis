@@ -15,5 +15,5 @@ while True:
         if roi is None:
             continue
         else:
-            label = caffe_model.predict(roi)
+            label = emo_model.predict(roi)
             print(label)
