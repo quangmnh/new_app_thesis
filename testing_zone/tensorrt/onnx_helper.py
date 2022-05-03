@@ -17,7 +17,7 @@ class ONNXClassifierWrapper():
     def load(self, file):
         f = open(file, "rb")
         runtime = trt.Runtime(trt.Logger(trt.Logger.WARNING)) 
-
+        trt.init_libnvinfer_plugins(None, '')
         engine = runtime.deserialize_cuda_engine(f.read())
         self.context = engine.create_execution_context()
         
