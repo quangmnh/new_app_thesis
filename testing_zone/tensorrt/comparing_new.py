@@ -1,5 +1,8 @@
+from multiprocessing import dummy
+from timeit import timeit
 from model_manager import *
 import os
+from time import time
 # camera = CameraManagement()
 trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
 # emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
@@ -9,6 +12,11 @@ caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caf
 data_path = "./input/data1"
 filepaths = []
 images = []
+res = []
+time_total = 0
+dummy_input = np.zeros((1, 48, 48, 1))
+for _ in range(10):
+    _ = trt_model.predict(dummy_input)
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
@@ -26,7 +34,10 @@ for image in images:
     roi = get_roi(box, frame)
     # print("??????????????c")
     # print(roi.shape)
-    print(trt_model.predict(roi)[0])
-    # print(emo_model.predict(roi))
+    time_total += timeit('trt_model.predict(roi)')
     
+    
+    # print(emo_model.predict(roi))
+print("total time for tensorrt model")
+print(time_total)    
 

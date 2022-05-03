@@ -1,7 +1,8 @@
 from model_manager import *
 import os
+from timeit import timeit
 # camera = CameraManagement()
-trt_model = ONNXClassifierWrapper("new_model_fp16.trt", [1, 5], target_dtype = np.float16)
+# trt_model = ONNXClassifierWrapper("new_model_fp16.trt", [1, 5], target_dtype = np.float16)
 emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
 caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 # print("??????????????")
@@ -9,10 +10,11 @@ caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caf
 data_path = "./input/data1"
 filepaths = []
 images = []
+time_total = 0
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
-        print(filepath)
+        # print(filepath)
         image = cv2.imread(filepath)
         label = filepath.split('/')[4]
         images.append({"label": label, "image": image})
@@ -25,8 +27,10 @@ for image in images:
     # print("??????????????b")
     roi = get_roi(box, frame)
     # print("??????????????c")
-    print(roi.shape)
-    print(trt_model.predict(roi)[0])
-    print(emo_model.predict(roi))
-    
+    # print(roi.shape)
+    # print(trt_model.predict(roi)[0])
+    # print(emo_model.predict(roi))
+    time_total+= timeit('emo_model.predict(roi)')
+print("total time for keras model")
+print(time_total)
 

@@ -35,6 +35,7 @@ class SSDCaffeModel():
 
 
 class ONNXClassifierWrapper():
+    __class_labels = ['Angry', 'Happy', 'Neutral', 'Sad', 'Surprise']
     def __init__(self, file, num_classes, target_dtype = np.float32):
         
         self.target_dtype = target_dtype
@@ -75,7 +76,8 @@ class ONNXClassifierWrapper():
         # Syncronize threads
         self.stream.synchronize()
         
-        return self.output
+        label = self.__class_labels[self.output.argmax()]
+        return label
 class CameraManagement():
     def __init__(self):
         self.video_capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)
