@@ -1,5 +1,4 @@
 from model_manager import *
-from testing_zone.tensorrt.model_manager import ONNXClassifierWrapper2
 import numpy as np
 camera = CameraManagement()
 emo_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
