@@ -78,6 +78,55 @@ class ONNXClassifierWrapper():
         
         label = self.__class_labels[self.output.argmax()]
         return label
+
+class ONNXClassifierWrapper2():
+    def __init__(self, file, num_classes, conf_threshold = 0.5, target_dtype = np.float32):
+        
+        self.target_dtype = target_dtype
+        self.num_classes = num_classes
+        self.load(file)
+        self.conf_threshold = conf_threshold
+        self.stream = None
+      
+    def load(self, file):
+        f = open(file, "rb")
+        runtime = trt.Runtime(trt.Logger(trt.Logger.WARNING)) 
+        trt.init_libnvinfer_plugins(None, '')
+        engine = runtime.deserialize_cuda_engine(f.read())
+        self.context = engine.create_execution_context()
+        
+    def allocate_memory(self, batch):
+        self.output = np.empty(self.num_classes, dtype = self.target_dtype) # Need to set both input and output precisions to FP16 to fully enable FP16
+
+        # Allocate device memory
+        self.d_input = cuda.mem_alloc(1 * batch.nbytes)
+        self.d_output = cuda.mem_alloc(1 * self.output.nbytes)
+
+        self.bindings = [int(self.d_input), int(self.d_output)]
+
+        self.stream = cuda.Stream()
+        
+    def predict(self, batch): # result gets copied into output
+        if self.stream is None:
+            self.allocate_memory(batch)
+            
+        # Transfer input data to device
+        cuda.memcpy_htod_async(self.d_input, batch, self.stream)
+        # Execute model
+        # self.context.execute_async_v2(self.bindings, self.stream.handle, None)
+        self.context.execute_async(1, self.bindings, self.stream.handle, None)
+        # Transfer predictions back
+        cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
+        # Syncronize threads
+        self.stream.synchronize()
+
+        for i in range(0, self.output.shape[2]):
+            confidence = self.output[0, 0, i, 2]
+            
+            if confidence > 0.5:
+                return self.output[0, 0, i, :]
+        return None
+
 class CameraManagement():
     def __init__(self):
         self.video_capture = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)
