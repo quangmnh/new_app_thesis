@@ -128,3 +128,20 @@ def gstreamer_pipeline(
             display_height,
         )
     )
+def get_blob( frame):
+    blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
+    return blob
+def get_roi(box, frame):
+    (x, y, w, h) = box.astype('int')
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray_roi = gray[y:h, x:w]
+    if gray_roi.shape[0] == 0 or gray_roi.shape[1] == 0:
+        return None
+    else:
+        gray_roi = cv2.resize(gray_roi, (48, 48), interpolation=cv2.INTER_AREA)
+    if np.sum([gray_roi]) != 0:
+        roi = gray_roi.astype('float') / 255.0
+        roi = img_to_array(roi)
+        roi = np.expand_dims(roi, axis=0)
+        return roi
+    return None
