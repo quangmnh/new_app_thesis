@@ -39,7 +39,7 @@ for image in images:
     
     
     # print(emo_model.predict(roi))
-print("total time for tensorrt model")
+print("total time for keras model")
 print(time_total*1000)    
 print(res*1.0/len(images))
 
