@@ -12,13 +12,14 @@ while True:
         continue
     else:
         (x, y, w, h) = box.astype('int')
-        cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
+        # cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
+        print([x, y, w, h])
         roi = camera.get_roi(box, frame)
         if roi is None:
             continue
         else:
             label = emo_model.predict(roi)
             print(label)
-    cv2.imshow('Emotion :3', frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    # cv2.imshow('Emotion :3', frame)
+    # if cv2.waitKey(1) & 0xFF == ord('q'):
+    #     break
