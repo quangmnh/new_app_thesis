@@ -65,3 +65,5 @@ class SSDCaffeModel():
                 # (x, y, w, h) = box.astype('int')
                 # cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
         return res
+
+class 
