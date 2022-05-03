@@ -29,10 +29,11 @@ for _ in range(10):
 for image in images:
     frame = image["image"]
     # print("??????????????a")
+    
+    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
     if box is None:
         continue
     else:
-        box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
         # print("??????????????b")
         roi = get_roi(box, frame)
         # print("??????????????c")
