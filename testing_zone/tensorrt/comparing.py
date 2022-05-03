@@ -12,20 +12,21 @@ images = []
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
-        image = cv2.imread(filepath)
-        label = filepath.split('/')[4]
-        images.append({"label": label, "image": image})
-        filepaths.append(filepath)
+        print(filepath)
+#         image = cv2.imread(filepath)
+#         label = filepath.split('/')[4]
+#         images.append({"label": label, "image": image})
+#         filepaths.append(filepath)
 
-for image in images:
-    frame = image["image"]
-    print("??????????????a")
-    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
-    print("??????????????b")
-    roi = get_roi(box, frame)
-    print("??????????????c")
-    print(box)
-    print(emo_model.predict(roi)[0])
-    print(trt_model.predict(roi)[0])
+# for image in images:
+#     frame = image["image"]
+#     print("??????????????a")
+#     box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+#     print("??????????????b")
+#     roi = get_roi(box, frame)
+#     print("??????????????c")
+#     print(box)
+#     print(emo_model.predict(roi)[0])
+#     print(trt_model.predict(roi)[0])
     
 
