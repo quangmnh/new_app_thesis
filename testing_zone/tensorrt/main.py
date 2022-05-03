@@ -14,6 +14,7 @@ while True:
         (x, y, w, h) = box.astype('int')
         # cv2.rectangle(frame, (x, y), (w, h), (255, 255, 0), 2)
         print([x, y, w, h])
+        print(box)
         roi = camera.get_roi(box, frame)
         if roi is None:
             continue
