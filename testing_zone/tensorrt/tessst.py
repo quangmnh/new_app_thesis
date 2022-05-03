@@ -27,7 +27,7 @@ for i in range(0, predictions.shape[2]):
 
 
 modelFile = './input/res10_300x300_ssd_iter_140000.caffemodel'
-configFile = './input/deploy.prototxt.txt'
+configFile = './input/ssd.prototxt'
 net = cv2.dnn.readNetFromCaffe(configFile, modelFile)
 net.setInput(blob)
 detections = net.forward()
