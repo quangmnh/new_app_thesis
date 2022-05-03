@@ -1,6 +1,7 @@
+import cv2
 from onnx_helper import ONNXClassifierWrapper
 import numpy as np
-import cv2
+
 
 frame = cv2.imread("./input/0.png")
 PRECISION = np.float16
