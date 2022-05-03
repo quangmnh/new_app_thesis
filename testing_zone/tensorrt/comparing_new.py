@@ -55,3 +55,4 @@ for image in images:
 print("total time for tensorrt model")
 print(time_total*1000)    
 print(res*1.0/count)
+print(count)
