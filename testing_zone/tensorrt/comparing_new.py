@@ -14,6 +14,7 @@ filepaths = []
 images = []
 res = 0
 time_total = 0.0
+count =0
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
@@ -28,23 +29,28 @@ for _ in range(10):
 for image in images:
     frame = image["image"]
     # print("??????????????a")
-    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
-    # print("??????????????b")
-    roi = get_roi(box, frame)
-    # print("??????????????c")
-    # print(roi.shape)
-    # time_total += timeit('trt_model.predict(roi)')
-    if roi is None:
+    if box is None:
         continue
     else:
-        start = time()
-        label = trt_model.predict(roi)
-        time_total+=time()-start
-        if label == image["label"]:
-            res+=1
+        box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+        # print("??????????????b")
+        roi = get_roi(box, frame)
+        # print("??????????????c")
+        # print(roi.shape)
+        # time_total += timeit('trt_model.predict(roi)')
+        if roi is None:
+            continue
+        else:
+            start = time()
+            label = trt_model.predict(roi)
+            time_total+=time()-start
+            if label == image["label"]:
+                res+=1
+            count+=1
+    
         
     
     # print(emo_model.predict(roi))
 print("total time for tensorrt model")
 print(time_total*1000)    
-print(res*1.0/len(images))
+print(res*1.0/count)
