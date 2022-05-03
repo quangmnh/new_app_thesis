@@ -18,3 +18,4 @@ blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (10
 print(blob[0].shape)
 trt_model = ONNXClassifierWrapper("new_caffe.trt",[bruh, bruh2, FACE_NUMBER, BOX] , target_dtype = PRECISION)
 predictions = trt_model.predict(blob)
+print(predictions)
