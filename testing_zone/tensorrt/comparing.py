@@ -20,6 +20,7 @@ for image in images:
     frame = image["image"]
     box = caffe_model.get_boxes(frame=frame, blob=camera.get_blob(frame))
     roi = camera.get_roi(box, frame)
+    print(box)
     print(emo_model.predict(roi)[0])
     print(trt_model.predict(roi)[0])
     
