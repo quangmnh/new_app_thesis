@@ -12,6 +12,7 @@ images = []
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
+        print(filepath)
         image = cv2.imread(filepath)
         label = filepath.split('/')[4]
         images.append({"label": label, "image": image})
@@ -25,7 +26,7 @@ for image in images:
     roi = get_roi(box, frame)
     print("??????????????c")
     print(box)
-    print(emo_model.predict(roi)[0])
+    print(emo_model.predict(roi))
     # print(trt_model.predict(roi)[0])
     
 
