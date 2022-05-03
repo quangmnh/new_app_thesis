@@ -16,4 +16,11 @@ BOX = 7
 blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
 trt_model = ONNXClassifierWrapper("new_caffe_fp16.trt",[bruh, bruh2, FACE_NUMBER, BOX] , target_dtype = PRECISION)
 predictions = trt_model.predict(blob)
-print(predictions)
+# print(predictions)
+
+for i in range(0, predictions.shape[2]):
+
+        confidence = predictions[0, 0, i, 2]
+
+        if confidence > 0.5:
+            print(predictions[0, 0, i, :])
