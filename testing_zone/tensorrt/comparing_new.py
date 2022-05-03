@@ -34,12 +34,15 @@ for image in images:
     # print("??????????????c")
     # print(roi.shape)
     # time_total += timeit('trt_model.predict(roi)')
-    start = time()
-    label = trt_model.predict(roi)
-    time_total+=time()-start
-    if label == image["label"]:
-        res+=1
-    
+    if roi is None:
+        continue
+    else:
+        start = time()
+        label = trt_model.predict(roi)
+        time_total+=time()-start
+        if label == image["label"]:
+            res+=1
+        
     
     # print(emo_model.predict(roi))
 print("total time for tensorrt model")
