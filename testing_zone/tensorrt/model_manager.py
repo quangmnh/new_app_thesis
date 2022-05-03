@@ -1,10 +1,9 @@
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import *
-import numpy as np
 import cv2
 import numpy as np
 import tensorflow as tf
 import tensorrt as trt
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import *
 
 import pycuda.driver as cuda
 import pycuda.autoinit
