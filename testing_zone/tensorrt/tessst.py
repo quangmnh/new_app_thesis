@@ -4,7 +4,7 @@ import numpy as np
 
 
 frame = cv2.imread("./input/0.png")
-PRECISION = np.float16
+PRECISION = np.float32
 BATCH_SIZE=1
 # dummy_input_batch = np.zeros((BATCH_SIZE, 3, 300, 300))
 
@@ -14,7 +14,7 @@ FACE_NUMBER = 200
 BOX = 7
 
 blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
-trt_model = ONNXClassifierWrapper("new_caffe_fp16.trt",[bruh, bruh2, FACE_NUMBER, BOX] , target_dtype = PRECISION)
+trt_model = ONNXClassifierWrapper("new_caffe.trt",[bruh, bruh2, FACE_NUMBER, BOX] , target_dtype = PRECISION)
 predictions = trt_model.predict(blob[0])
 # print(predictions)
 

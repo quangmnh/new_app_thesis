@@ -47,7 +47,7 @@ class ONNXClassifierWrapper():
     def load(self, file):
         f = open(file, "rb")
         runtime = trt.Runtime(trt.Logger(trt.Logger.WARNING)) 
-        # trt.init_libnvinfer_plugins(None, '')
+        trt.init_libnvinfer_plugins(None, '')
         engine = runtime.deserialize_cuda_engine(f.read())
         self.context = engine.create_execution_context()
         
@@ -69,8 +69,8 @@ class ONNXClassifierWrapper():
         # Transfer input data to device
         cuda.memcpy_htod_async(self.d_input, batch, self.stream)
         # Execute model
-        self.context.execute_async_v2(self.bindings, self.stream.handle, None)
-        # self.context.execute_async(1, self.bindings, self.stream.handle, None)
+        # self.context.execute_async_v2(self.bindings, self.stream.handle, None)
+        self.context.execute_async(1, self.bindings, self.stream.handle, None)
         # Transfer predictions back
         cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
         # Syncronize threads
