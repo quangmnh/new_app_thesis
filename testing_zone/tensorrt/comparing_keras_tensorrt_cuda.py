@@ -27,31 +27,31 @@ for root, directories, files in os.walk(data_path):
         label = filepath.split('/')[4]
         images.append({"label": label, "image": image})
         filepaths.append(filepath)
-dummy_input = np.zeros((1, 48, 48, 1))
-for _ in range(10):
-    _ = trt_model.predict(dummy_input)
-for image in images:
-    frame = image["image"]
-    # print("??????????????a")
+# dummy_input = np.zeros((1, 48, 48, 1))
+# for _ in range(10):
+#     _ = trt_model.predict(dummy_input)
+# for image in images:
+#     frame = image["image"]
+#     # print("??????????????a")
     
-    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
-    if box is None:
-        continue
-    else:
-        # print("??????????????b")
-        roi = get_roi(box, frame)
-        # print("??????????????c")
-        # print(roi.shape)
-        # time_total += timeit('trt_model.predict(roi)')
-        if roi is None:
-            continue
-        else:
-            start = time()
-            label = trt_model.predict(roi)
-            time_total+=time()-start
-            if label == image["label"]:
-                res+=1
-            count+=1
+#     box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+#     if box is None:
+#         continue
+#     else:
+#         # print("??????????????b")
+#         roi = get_roi(box, frame)
+#         # print("??????????????c")
+#         # print(roi.shape)
+#         # time_total += timeit('trt_model.predict(roi)')
+#         if roi is None:
+#             continue
+#         else:
+#             start = time()
+#             label = trt_model.predict(roi)
+#             time_total+=time()-start
+#             if label == image["label"]:
+#                 res+=1
+#             count+=1
 
 emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
 for image in images:
@@ -79,10 +79,10 @@ for image in images:
         
     
     # print(emo_model.predict(roi))
-print("total time for tensorrt model")
-print(time_total*1000)    
-print(res*1.0/count)
-print(count)
+# print("total time for tensorrt model")
+# print(time_total*1000)    
+# print(res*1.0/count)
+# print(count)
 
 
 print("total time for keras model")
@@ -91,10 +91,10 @@ print(res1*1.0/count1)
 print(count1)
 
 # Figure Size
-fig = plt.figure()
+# fig = plt.figure()
  
 # Horizontal Bar Plot
-plt.bar(["TensorRT", "Keras"], [res*1.0/count, res1*1.0/count1])
+# plt.bar(["TensorRT", "Keras"], [res*1.0/count, res1*1.0/count1])
  
-# Show Plot
-plt.show()
+# # Show Plot
+# plt.show()
