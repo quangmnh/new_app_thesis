@@ -35,6 +35,6 @@ for image in images:
     time_total+=time()-start
     count+=1
     # print(emo_model.predict(roi))
-print("Total time for tensorrt model: {}".format(time_total*1000))   
+print("Total time for caffe model: {}".format(time_total*1000))   
 # print(res*1.0/count)
 print("Framws processed: {}".format(count))
