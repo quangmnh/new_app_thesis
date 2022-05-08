@@ -29,8 +29,9 @@ for _ in range(10):
 for image in images:
     frame = image["image"]
     # print("??????????????a")
+    blob = get_blob(frame)
     start = time()
-    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+    box = caffe_model.get_boxes(frame=frame, blob)
     time_total+=time()-start
     count+=1
     # print(emo_model.predict(roi))

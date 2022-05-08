@@ -30,12 +30,13 @@ for _ in range(10):
 for image in images:
     frame = image["image"]
     # print("??????????????a")
+    blob = get_blob(frame)
     start = time()
-    box = trt_model.predict(get_blob(frame))
+    box = trt_model.predict(blob)
     # box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
     time_total+=time()-start
     count+=1
     # print(emo_model.predict(roi))
-print("Total time for tensorrt model: {}".format(time_total*1000))   
+print("Total time for caffe tensorrt model: {}".format(time_total*1000))   
 # print(res*1.0/count)
 print("Framws processed: {}".format(count))
