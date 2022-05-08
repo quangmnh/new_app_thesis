@@ -52,7 +52,7 @@ for image in images:
         
     
     # print(emo_model.predict(roi))
-print("total time for tensorrt mode: {}".format(time_total*1000))
+print("total time for emotional recognition for tensorrt model: {}".format(time_total*1000))
 # print(time_total*1000)    
 # print(""res*1.0/count)
 print("Total frames processed: ".format(count))
