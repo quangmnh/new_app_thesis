@@ -112,14 +112,14 @@ class ONNXClassifierWrapper2():
             self.allocate_memory(batch)
             
         # Transfer input data to device
-        cuda.memcpy_htod_async(self.d_input, batch, self.stream)
+        # cuda.memcpy_htod_async(self.d_input, batch, self.stream)
         # Execute model
         # self.context.execute_async_v2(self.bindings, self.stream.handle, None)
         self.context.execute_async(1, self.bindings, self.stream.handle, None)
         # Transfer predictions back
-        cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
+        # cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
         # Syncronize threads
-        self.stream.synchronize()
+        # self.stream.synchronize()
 
         for i in range(0, self.output.shape[2]):
             confidence = self.output[0, 0, i, 2]
