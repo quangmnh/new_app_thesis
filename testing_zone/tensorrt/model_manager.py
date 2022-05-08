@@ -104,7 +104,6 @@ class ONNXClassifierWrapper2():
         self.d_output = cuda.mem_alloc(1 * self.output.nbytes)
 
         self.bindings = [int(self.d_input), int(self.d_output)]
-
         self.stream = cuda.Stream()
         
     def predict(self, batch): # result gets copied into output
