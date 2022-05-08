@@ -24,7 +24,7 @@ for root, directories, files in os.walk(data_path):
         label = filepath.split('/')[4]
         images.append({"label": label, "image": image})
         filepaths.append(filepath)
-dummy_input = np.zeros((1, 48, 48, 1))
+dummy_input = np.zeros((1, 3, 300, 300))
 for _ in range(10):
     _ = trt_model.predict(dummy_input)
 for image in images:
