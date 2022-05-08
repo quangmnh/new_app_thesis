@@ -6,7 +6,6 @@ from time import time
 from matplotlib import pyplot as plt
 # camera = CameraManagement()
 trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
-emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
 caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 # print("??????????????")
 
@@ -54,6 +53,23 @@ for image in images:
                 res+=1
             count+=1
 
+emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
+for image in images:
+    frame = image["image"]
+    # print("??????????????a")
+    
+    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+    if box is None:
+        continue
+    else:
+        # print("??????????????b")
+        roi = get_roi(box, frame)
+        # print("??????????????c")
+        # print(roi.shape)
+        # time_total += timeit('trt_model.predict(roi)')
+        if roi is None:
+            continue
+        else:
             start = time()
             label = emo_model.predict(roi)
             time_total1+=time()-start
