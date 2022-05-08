@@ -31,7 +31,7 @@ for image in images:
     # print("??????????????a")
     blob = get_blob(frame)
     start = time()
-    box = caffe_model.get_boxes(frame=frame, blob)
+    box = caffe_model.get_boxes(frame=frame, blob = blob)
     time_total+=time()-start
     count+=1
     # print(emo_model.predict(roi))
