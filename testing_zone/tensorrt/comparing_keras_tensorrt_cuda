@@ -3,6 +3,7 @@ from timeit import timeit
 from model_manager import *
 import os
 from time import time
+from matplotlib import pyplot as plt
 # camera = CameraManagement()
 trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
 emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
@@ -72,3 +73,12 @@ print("total time for keras model")
 print(time_total1*1000)    
 print(res1*1.0/count1)
 print(count1)
+
+# Figure Size
+fig = plt.figure()
+ 
+# Horizontal Bar Plot
+plt.bar(["TensorRT", "Keras"], [res*1.0/count, res1*1.0/count1])
+ 
+# Show Plot
+plt.show()
