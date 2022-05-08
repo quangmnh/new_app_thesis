@@ -37,4 +37,4 @@ for image in images:
     # print(emo_model.predict(roi))
 print("Total time for caffe model: {}".format(time_total*1000))   
 # print(res*1.0/count)
-print("Framws processed: {}".format(count))
+print("Frames processed: {}".format(count))
