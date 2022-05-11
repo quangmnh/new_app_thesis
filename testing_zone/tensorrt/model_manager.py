@@ -13,7 +13,6 @@ class KerasEmotionClassificationModel():
     def __init__(self, model_path, display = False, GPU = True):
         self.model = load_model(model_path)
         self.display = display
-        sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(log_device_placement=True))
     def predict(self, roi):
         predict = self.model.predict(roi)[0]
         label = self.__class_labels[predict.argmax()]
@@ -104,6 +103,7 @@ class ONNXClassifierWrapper2():
         self.d_output = cuda.mem_alloc(1 * self.output.nbytes)
 
         self.bindings = [int(self.d_input), int(self.d_output)]
+
         self.stream = cuda.Stream()
         
     def predict(self, batch): # result gets copied into output
@@ -111,14 +111,14 @@ class ONNXClassifierWrapper2():
             self.allocate_memory(batch)
             
         # Transfer input data to device
-        # cuda.memcpy_htod_async(self.d_input, batch, self.stream)
+        cuda.memcpy_htod_async(self.d_input, batch, self.stream)
         # Execute model
         # self.context.execute_async_v2(self.bindings, self.stream.handle, None)
         self.context.execute_async(1, self.bindings, self.stream.handle, None)
         # Transfer predictions back
-        # cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
+        cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
         # Syncronize threads
-        # self.stream.synchronize()
+        self.stream.synchronize()
 
         for i in range(0, self.output.shape[2]):
             confidence = self.output[0, 0, i, 2]
