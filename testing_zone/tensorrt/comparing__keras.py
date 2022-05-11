@@ -47,7 +47,7 @@ for image in images:
             continue
         else:
             start = time()
-            label = emo.predict(roi)
+            label = emo_model.predict(roi)
             time_total+=time()-start
             if label == image["label"]:
                 res+=1
