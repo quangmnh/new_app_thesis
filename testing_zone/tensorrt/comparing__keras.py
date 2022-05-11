@@ -24,9 +24,13 @@ for root, directories, files in os.walk(data_path):
         images.append({"label": label, "image": image})
         filepaths.append(filepath)
 dummy_input = np.zeros((1, 48, 48, 1))
-for _ in range(10):
-    _ = emo_model.predict(dummy_input)
+# for _ in range(10):
+#     _ = emo_model.predict(dummy_input)
+count1 = 0
 for image in images:
+    count1+=1
+    if count1 == 10:
+        break
     frame = image["image"]
     # print("??????????????a")
     
