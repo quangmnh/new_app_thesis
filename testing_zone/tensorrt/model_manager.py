@@ -13,6 +13,7 @@ class KerasEmotionClassificationModel():
     def __init__(self, model_path, display = False, GPU = True):
         self.model = load_model(model_path)
         self.display = display
+        sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(log_device_placement=True))
     def predict(self, roi):
         predict = self.model.predict(roi)[0]
         label = self.__class_labels[predict.argmax()]
