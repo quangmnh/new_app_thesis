@@ -9,7 +9,7 @@ emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_
 caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 # print("??????????????")
 
-data_path = "./input/data"
+data_path = "./input/data1"
 filepaths = []
 images = []
 res = 0
@@ -29,7 +29,7 @@ dummy_input = np.zeros((1, 48, 48, 1))
 count1 = 0
 for image in images:
     count1+=1
-    if count1 == 10:
+    if count1 == 3:
         break
     frame = image["image"]
     # print("??????????????a")
