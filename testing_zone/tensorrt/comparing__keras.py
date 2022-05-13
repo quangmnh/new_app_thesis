@@ -31,6 +31,8 @@ for root, directories, files in os.walk(data_path):
         # print("??????????????a")
         blob = get_blob(image)
         box = trt_model.predict(blob)
+        print(box)
+        print(filepath)
         if box is None:
             continue
         else:
