@@ -20,7 +20,7 @@ count1 = 0
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
-        # print(filepath)
+        print(filepath)
         image = cv2.imread(filepath)
         label = filepath.split('/')[4]
         # images.append({"label": label, "image": image})
@@ -30,7 +30,7 @@ for root, directories, files in os.walk(data_path):
         # frame = image["image"]
         # print("??????????????a")
         blob = get_blob(image)
-        box = trt_model.predict(blob, frame)
+        box = trt_model.predict(blob, image)
         # print(box/)
         # print(fil/epath)
         if box is None:
