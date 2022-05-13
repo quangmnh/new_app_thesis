@@ -43,9 +43,9 @@ for root, directories, files in os.walk(data_path):
                 continue
             else:
                 start = time()
-                label = emo_model.predict(roi)
+                label_pred = emo_model.predict(roi)
                 time_total+=time()-start
-                if label == image["label"]:
+                if label == label_pred:
                     res+=1
                 count+=1
         
