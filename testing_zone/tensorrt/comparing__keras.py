@@ -35,7 +35,7 @@ for root, directories, files in os.walk(data_path):
             continue
         else:
             # print("??????????????b")
-            roi = get_roi(box, frame)
+            roi = get_roi(box, image)
             # print("??????????????c")
             # print(roi.shape)
             # time_total += timeit('trt_model.predict(roi)')
