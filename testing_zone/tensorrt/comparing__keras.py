@@ -27,9 +27,9 @@ for root, directories, files in os.walk(data_path):
         # count1+=1
         # if count1 == 3:
         #     break
-        frame = image["image"]
+        # frame = image["image"]
         # print("??????????????a")
-        blob = get_blob(frame)
+        blob = get_blob(image)
         box = trt_model.predict(blob)
         if box is None:
             continue
