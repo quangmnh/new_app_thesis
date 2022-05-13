@@ -9,11 +9,11 @@ c =range(1,11)
 # figure, axis = plt.subplots(3, 1)
 
 
-plt.scatter(c,a, c="r")
-plt.title("Caffe model coverted to TensorRT model\n 1557 samples each iteration")
-plt.xlabel("Iterations")
-plt.ylabel("Inference Time (ms)")
-plt.ylim(min(a)*0.99,max(a)*1.01)
+# plt.scatter(c,a, c="r")
+# plt.title("Caffe model coverted to TensorRT model\n 1557 samples each iteration")
+# plt.xlabel("Iterations")
+# plt.ylabel("Inference Time (ms)")
+# plt.ylim(min(a)*0.99,max(a)*1.01)
 
 # plt.scatter(c,b, c="r")
 # plt.title("Vanila Caffe model \n 1557 samples each iteration")
@@ -22,13 +22,13 @@ plt.ylim(min(a)*0.99,max(a)*1.01)
 # plt.ylim(min(b)*0.99,max(b)*1.01)
 
 
-# d = ["Caffe", "TensorRT"]
-# e = [sum(a)/15570, sum(b)/15570]
-# print(sum(a)/15570)
-# print(sum(b)/15570)
-# plt.barh(d,e,height=0.1,align='center')
-# plt.title("Comparing the 2 model\n Average inference time")
-# plt.ylabel("Model type")
-# plt.xlabel("Inference Time (ms)")
+d = ["Caffe", "TensorRT"]
+e = [sum(a)/15570, sum(b)/15570]
+print(sum(a)/15570)
+print(sum(b)/15570)
+plt.barh(d,e,height=0.1,align='center')
+plt.title("Comparing the 2 model\n Average inference time")
+plt.ylabel("Model type")
+plt.xlabel("Inference Time (ms)")
 
 plt.show()
