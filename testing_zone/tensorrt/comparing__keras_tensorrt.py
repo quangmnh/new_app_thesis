@@ -6,9 +6,9 @@ from time import time
 # camera = CameraManagement()
 trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
 # emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
-caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
+# caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 # print("??????????????")
-
+caffe_model = ONNXClassifierWrapper2("new_caffe.trt",[1, 1, 200, 7] , target_dtype = np.float32)
 data_path = "./input/data"
 filepaths = []
 images = []
@@ -30,7 +30,7 @@ for image in images:
     frame = image["image"]
     # print("??????????????a")
     
-    box = caffe_model.get_boxes(frame=frame, blob=get_blob(frame))
+    box = caffe_model.predict(get_blob(frame),frame)
     if box is None:
         continue
     else:
