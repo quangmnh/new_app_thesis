@@ -141,7 +141,8 @@ class CameraManagement():
         blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
         return blob
     def get_roi(self,box, frame = None):
-        (x, y, w, h) = box.astype('int')
+        (height, width) = frame.shape[:2]
+        (x, y, w, h) = box.astype('int') * np.array([width, height, width, height])
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_roi = gray[y:h, x:w]
         if gray_roi.shape[0] == 0 or gray_roi.shape[1] == 0:
@@ -184,7 +185,8 @@ def get_blob( frame):
     blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
     return blob
 def get_roi(box, frame):
-    (x, y, w, h) = box.astype('int')
+    (height, width) = frame.shape[:2]
+    (x, y, w, h) = box.astype('int') * np.array([width, height, width, height])
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray_roi = gray[y:h, x:w]
     if gray_roi.shape[0] == 0 or gray_roi.shape[1] == 0:
