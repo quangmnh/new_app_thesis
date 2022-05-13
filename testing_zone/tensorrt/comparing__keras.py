@@ -30,7 +30,7 @@ for root, directories, files in os.walk(data_path):
         # frame = image["image"]
         # print("??????????????a")
         blob = get_blob(image)
-        box = trt_model.predict(blob)
+        box = trt_model.predict(blob, frame)
         # print(box/)
         # print(fil/epath)
         if box is None:

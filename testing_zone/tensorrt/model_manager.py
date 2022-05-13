@@ -125,8 +125,8 @@ class ONNXClassifierWrapper2():
             confidence = self.output[0, 0, i, 2]
 
             if confidence > 0.5:
-                (height, width) = frame.shape[:2] * np.array([width, height, width, height])
-                return self.output[0, 0, i, 3:7] 
+                (height, width) = frame.shape[:2] 
+                return self.output[0, 0, i, 3:7] * np.array([width, height, width, height])
         return None
 
 class CameraManagement():
