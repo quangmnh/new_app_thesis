@@ -187,6 +187,7 @@ def get_blob( frame):
 def get_roi(box, frame):
     (height, width) = frame.shape[:2]
     box = box * np.array([width, height, width, height])
+    print(box)
     (x, y, w, h) = box.astype('int') 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray_roi = gray[y:h, x:w]

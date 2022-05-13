@@ -9,7 +9,7 @@ trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.flo
 caffe_model = SSDCaffeModel(modelFile="./input/res10_300x300_ssd_iter_140000.caffemodel",configFile="./input/deploy.prototxt.txt")
 # print("??????????????")
 
-data_path = "./input/data"
+data_path = "./input/data1"
 filepaths = []
 images = []
 res = 0
