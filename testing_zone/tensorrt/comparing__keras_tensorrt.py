@@ -56,3 +56,4 @@ print("total time for emotional recognition for tensorrt model: {}".format(time_
 # print(time_total*1000)    
 print("Accuracy: {}".format(res*1.0/count))
 print("Total frames processed: {}".format(count))
+exit()

@@ -40,3 +40,4 @@ for image in images:
 print("Total time for caffe tensorrt model: {}".format(time_total*1000))   
 # print(res*1.0/count)
 print("Framws processed: {}".format(count))
+exit()
