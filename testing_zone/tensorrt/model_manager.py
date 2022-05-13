@@ -107,7 +107,7 @@ class ONNXClassifierWrapper2():
 
         self.stream = cuda.Stream()
         
-    def predict(self, batch): # result gets copied into output
+    def predict(self, batch, frame): # result gets copied into output
         if self.stream is None:
             self.allocate_memory(batch)
             
@@ -120,11 +120,12 @@ class ONNXClassifierWrapper2():
         cuda.memcpy_dtoh_async(self.output, self.d_output, self.stream)
         # Syncronize threads
         self.stream.synchronize()
-
+        
         for i in range(0, self.output.shape[2]):
             confidence = self.output[0, 0, i, 2]
 
             if confidence > 0.5:
+                (height, width) = frame.shape[:2] * np.array([width, height, width, height])
                 return self.output[0, 0, i, 3:7] 
         return None
 
@@ -185,9 +186,9 @@ def get_blob( frame):
     blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104., 177., 123.))
     return blob
 def get_roi(box, frame):
-    (height, width) = frame.shape[:2]
-    box = box * np.array([width, height, width, height])
-    print(box)
+    # (height, width) = frame.shape[:2]
+    # box = box * np.array([width, height, width, height])
+    # print(box)
     (x, y, w, h) = box.astype('int') 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray_roi = gray[y:h, x:w]
