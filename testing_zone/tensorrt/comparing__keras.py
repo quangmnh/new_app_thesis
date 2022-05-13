@@ -31,8 +31,8 @@ for root, directories, files in os.walk(data_path):
         # print("??????????????a")
         blob = get_blob(image)
         box = trt_model.predict(blob)
-        print(box)
-        print(filepath)
+        # print(box/)
+        # print(fil/epath)
         if box is None:
             continue
         else:
@@ -61,7 +61,7 @@ for root, directories, files in os.walk(data_path):
         
     
     # print(emo_model.predict(roi))
-print("total time for emotional recognition for tensorrt model: {}".format(time_total*1000))
+print("total time for emotional recognition for keras model: {}".format(time_total*1000))
 # print(time_total*1000)    
 print("Accuracy: {}".format(res*1.0/count))
 print("Total frames processed: {}".format(count))
