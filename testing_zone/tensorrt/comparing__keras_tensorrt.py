@@ -15,39 +15,41 @@ images = []
 res = 0
 time_total = 0.0
 count =0
+dummy_input = np.zeros((1, 48, 48, 1))
+for _ in range(10):
+    _ = trt_model.predict(dummy_input)
 for root, directories, files in os.walk(data_path):
     for filename in files:
         filepath = os.path.join(root, filename)
         # print(filepath)
         image = cv2.imread(filepath)
         label = filepath.split('/')[4]
-        images.append({"label": label, "image": image})
-        filepaths.append(filepath)
-dummy_input = np.zeros((1, 48, 48, 1))
-for _ in range(10):
-    _ = trt_model.predict(dummy_input)
-for image in images:
-    frame = image["image"]
-    # print("??????????????a")
-    
-    box = caffe_model.predict(get_blob(frame),frame)
-    if box is None:
-        continue
-    else:
-        # print("??????????????b")
-        roi = get_roi(box, frame)
-        # print("??????????????c")
-        # print(roi.shape)
-        # time_total += timeit('trt_model.predict(roi)')
-        if roi is None:
+        # images.append({"label": label, "image": image})
+        # filepaths.append(filepath)
+        box = caffe_model.predict(get_blob(image), image)
+        if box is None:
             continue
         else:
-            start = time()
-            label = trt_model.predict(roi)
-            time_total+=time()-start
-            if label == image["label"]:
-                res+=1
-            count+=1
+            # print("??????????????b")
+            roi = get_roi(box, image)
+            # print("??????????????c")
+            # print(roi.shape)
+            # time_total += timeit('trt_model.predict(roi)')
+            if roi is None:
+                continue
+            else:
+                start = time()
+                pred_label = trt_model.predict(roi)
+                time_total+=time()-start
+                if label == pred_label:
+                    res+=1
+                count+=1
+
+# for image in images:
+#     frame = image["image"]
+#     # print("??????????????a")
+    
+    
     
         
     
