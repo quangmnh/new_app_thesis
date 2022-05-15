@@ -3,6 +3,7 @@ from timeit import timeit
 from model_manager import *
 import os
 from time import time
+import psutil
 # camera = CameraManagement()
 # trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
 emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
@@ -50,6 +51,8 @@ for root, directories, files in os.walk(data_path):
                 if label == label_pred:
                     res+=1
                 count+=1
+                process = psutil.Process(os.getpid())
+                print(process.memory_info().rss)
         
         # filepaths.append(filepath)
 # dummy_input = np.zeros((1, 48, 48, 1))

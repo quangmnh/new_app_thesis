@@ -3,6 +3,7 @@ from timeit import timeit
 from model_manager import *
 import os
 from time import time
+import psutil
 # camera = CameraManagement()
 trt_model = ONNXClassifierWrapper("new_model.trt", [1, 5], target_dtype = np.float32)
 # emo_model = KerasEmotionClassificationModel("./input/facial_emotion_recognition_new_dataset.h5")
@@ -32,6 +33,8 @@ for image in images:
     blob = get_blob(frame)
     start = time()
     box = caffe_model.get_boxes(frame=frame, blob = blob)
+    process = psutil.Process(os.getpid())
+    print(process.memory_info().rss)
     time_total+=time()-start
     count+=1
     # print(emo_model.predict(roi))

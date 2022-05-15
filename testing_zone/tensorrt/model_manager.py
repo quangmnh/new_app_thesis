@@ -21,6 +21,8 @@ class KerasEmotionClassificationModel():
 class SSDCaffeModel():
     def __init__(self, confidence_threshold = 0.5, modelFile = 'res10_300x300_ssd_iter_140000.caffemodel', configFile = 'deploy.prototxt.txt', display = False):
         self.net = cv2.dnn.readNetFromCaffe(configFile, modelFile)
+        self.net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+        self.net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
         self.conf_threshold = confidence_threshold
     def get_boxes(self, blob, frame):
         self.net.setInput(blob)
